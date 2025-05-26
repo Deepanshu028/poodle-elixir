@@ -45,7 +45,7 @@ jobs:
       - name: Publish to Hex.pm
         run: |
           mix hex.config api_key ${{ secrets.HEX_API_KEY }}
-          mix hex.publish --yes
+          mix hex.publish --yes --replace
 
       - name: Create GitHub Release
         # Create a release only if the input version starts with 'v' (indicating a tag)
