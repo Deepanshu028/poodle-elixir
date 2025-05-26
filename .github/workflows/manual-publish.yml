@@ -1,0 +1,58 @@
+name: Manual Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish (e.g., v1.2.3)"
+        required: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    name: Publish to Hex.pm
+    permissions:
+      contents: write # Required for creating GitHub Release
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Checkout the specific version/tag provided in the input
+          ref: ${{ github.event.inputs.version }}
+
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: "1.16" # Using a specific recent Elixir version
+          otp-version: "26"
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: deps
+          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          restore-keys: ${{ runner.os }}-mix-
+
+      - name: Install dependencies
+        run: mix deps.get
+
+      - name: Run tests
+        run: mix test
+
+      - name: Generate documentation
+        run: mix docs
+
+      - name: Publish to Hex.pm
+        run: |
+          mix hex.config api_key ${{ secrets.HEX_API_KEY }}
+          mix hex.publish --yes
+
+      - name: Create GitHub Release
+        # Create a release only if the input version starts with 'v' (indicating a tag)
+        if: startsWith(github.event.inputs.version, 'v')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
