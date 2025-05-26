@@ -11,14 +11,30 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    # This is a complicated set of strategies, but Elixir has a complicated set of supported versions.
+    # See https://hexdocs.pm/elixir/compatibility-and-deprecations.html
+    # See https://hexdocs.pm/elixir/compatibility-and-deprecations.html#between-elixir-and-erlang-otp
+    #
+    # NOTE: We're intentionally not including Elixir 1.14.x + OTP 23.x
+    # because erlef/setup-beam@v1 doesn't support it.
     strategy:
       matrix:
-        elixir-version: ["1.14", "1.15", "1.16"]
-        otp-version: ["25", "26", "27"]
+        elixir-version: ["1.14.x", "1.15.x", "1.16.x", "1.17.x", "1.18.x"]
+        otp-version: ["24.x", "25.x", "26.x", "27.x"]
         exclude:
-          # OTP 27 is not compatible with Elixir 1.14
-          - elixir-version: "1.14"
-            otp-version: "27"
+          # Elixir 1.17 and 1.18 don't support OTP 24
+          - elixir-version: "1.17.x"
+            otp-version: "24.x"
+          - elixir-version: "1.18.x"
+            otp-version: "24.x"
+          # Elixir 1.14, 1.15 and 1.16 don't support OTP 27
+          - elixir-version: "1.15.x"
+            otp-version: "27.x"
+          - elixir-version: "1.16.x"
+            otp-version: "27.x"
+          - elixir-version: "1.14.x"
+            otp-version: "27.x"
 
     steps:
       - uses: actions/checkout@v4
