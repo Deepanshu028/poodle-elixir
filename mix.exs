@@ -8,7 +8,7 @@ defmodule Poodle.MixProject do
     [
       app: :poodle,
       version: @version,
-      elixir: "~> 1.14",
+      elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
