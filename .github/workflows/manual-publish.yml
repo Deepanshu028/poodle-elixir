@@ -45,7 +45,11 @@ jobs:
       - name: Publish to Hex.pm
         run: |
           mix hex.config api_key ${{ secrets.HEX_API_KEY }}
-          mix hex.publish --yes --replace
+          # First try without --replace, then with --replace if the version already exists
+          mix hex.publish --yes 2>&1 || {
+            echo "Publication failed, trying with --replace flag..."
+            mix hex.publish --yes --replace
+          }
 
       - name: Create GitHub Release
         # Create a release only if the input version starts with 'v' (indicating a tag)
