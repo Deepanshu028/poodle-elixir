@@ -6,6 +6,20 @@
 
 Elixir SDK for the Poodle email sending API.
 
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Configuration](#configuration)
+- [Usage Examples](#usage-examples)
+- [API Reference](#api-reference)
+- [Error Types](#error-types)
+- [Phoenix Integration](#phoenix-integration)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Features
 
 - 🚀 Simple and intuitive API
