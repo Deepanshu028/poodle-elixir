@@ -2,7 +2,7 @@
 
 [![Hex.pm](https://img.shields.io/hexpm/v/poodle.svg)](https://hex.pm/packages/poodle)
 [![Build Status](https://github.com/usepoodle/poodle-elixir/workflows/CI/badge.svg)](https://github.com/usepoodle/poodle-elixir/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/usepoodle/poodle-elixir/blob/main/LICENSE)
 
 Elixir SDK for the Poodle email sending API.
 
@@ -346,8 +346,8 @@ mix dialyzer
 
 ## Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on the process for submitting pull requests and our [Code of Conduct](CODE_OF_CONDUCT.md).
+Contributions are welcome! Please read our [Contributing Guide](https://github.com/usepoodle/poodle-elixir/blob/main/CONTRIBUTING.md) for details on the process for submitting pull requests and our [Code of Conduct](https://github.com/usepoodle/poodle-elixir/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/usepoodle/poodle-elixir/blob/main/LICENSE) file for details.
